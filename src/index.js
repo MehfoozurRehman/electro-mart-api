@@ -5,6 +5,7 @@ const monogoose = require("mongoose");
 const orders = require("./router/orders");
 const users = require("./router/users");
 const products = require("./router/products");
+const banners = require("./router/banners");
 const cors = require("cors");
 
 const dotenv = require("dotenv");
@@ -37,6 +38,7 @@ app.use("/api/categories", categories);
 app.use("/api/content", content);
 app.use("/api/orders", orders);
 app.use("/api/users", users);
+app.use("/api/banners", banners);
 
 //listen
 app.listen(port, () =>
