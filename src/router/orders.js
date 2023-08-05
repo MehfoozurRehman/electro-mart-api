@@ -39,9 +39,21 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const order = new Order(req.body);
-    await order.save();
-    res.send(order);
+    const Order = new Order({
+      username: req.body.username,
+      email: req.body.email,
+      phone: req.body.phone,
+      address: req.body.address,
+      products: req.body.products,
+      total: req.body.total,
+      status: req.body.status,
+      cardNumber: req.body.cardNumber,
+      cardName: req.body.cardName,
+      cardDate: req.body.cardDate,
+      cardCvv: req.body.cardCvv,
+    });
+    await Order.save();
+    res.send(Order);
   } catch (err) {
     console.log(err);
   }
@@ -49,9 +61,21 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const order = await Order.findByIdAndUpdate(req.params.id, req.body);
-    await order.save();
-    res.send(order);
+    const Order = await Order.findByIdAndUpdate(req.params.id, {
+      username: req.body.username,
+      email: req.body.email,
+      phone: req.body.phone,
+      address: req.body.address,
+      products: req.body.products,
+      total: req.body.total,
+      status: req.body.status,
+      cardNumber: req.body.cardNumber,
+      cardName: req.body.cardName,
+      cardDate: req.body.cardDate,
+      cardCvv: req.body.cardCvv,
+    });
+    await Order.save();
+    res.send(Order);
   } catch (err) {
     console.log(err);
   }
