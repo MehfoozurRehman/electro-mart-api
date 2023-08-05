@@ -8,7 +8,11 @@ const schema = new mongoose.Schema({
   address: String,
   products: Array,
   total: Number,
-  status: String,
+  status: {
+    type: String,
+    default: "pending",
+    enum: ["pending", "delivered", "cancelled"],
+  },
   cardNumber: String,
   cardName: String,
   cardDate: String,
@@ -39,7 +43,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const Order = new Order({
+    const order = new Order({
       username: req.body.username,
       email: req.body.email,
       phone: req.body.phone,
@@ -52,8 +56,8 @@ router.post("/", async (req, res) => {
       cardDate: req.body.cardDate,
       cardCvv: req.body.cardCvv,
     });
-    await Order.save();
-    res.send(Order);
+    await order.save();
+    res.send(order);
   } catch (err) {
     console.log(err);
   }
@@ -61,7 +65,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const Order = await Order.findByIdAndUpdate(req.params.id, {
+    const order = await Order.findByIdAndUpdate(req.params.id, {
       username: req.body.username,
       email: req.body.email,
       phone: req.body.phone,
@@ -74,8 +78,8 @@ router.put("/:id", async (req, res) => {
       cardDate: req.body.cardDate,
       cardCvv: req.body.cardCvv,
     });
-    await Order.save();
-    res.send(Order);
+    await order.save();
+    res.send(order);
   } catch (err) {
     console.log(err);
   }
