@@ -87,7 +87,7 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    const order = await Order.findByIdAbdDelete(req.params.id);
+    const order = await Order.findByIdAndDelete(req.params.id);
     res.send(order);
   } catch (err) {
     console.log(err);
