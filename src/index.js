@@ -9,7 +9,6 @@ const banners = require("./router/banners");
 const cors = require("cors");
 
 const dotenv = require("dotenv");
-const { use } = require("bcrypt/promises");
 
 dotenv.config();
 
