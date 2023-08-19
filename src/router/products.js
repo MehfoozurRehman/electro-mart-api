@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
   name: String,
+  model: String,
   brand: String,
   price: Number,
   img: String,
@@ -39,6 +40,7 @@ router.post("/", async (req, res) => {
   try {
     const product = new Product({
       name: req.body.name,
+      model: req.body.model,
       brand: req.body.brand,
       price: req.body.price,
       img: req.body.img,
@@ -59,6 +61,7 @@ router.put("/:id", async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
+      model: req.body.model,
       brand: req.body.brand,
       price: req.body.price,
       img: req.body.img,
